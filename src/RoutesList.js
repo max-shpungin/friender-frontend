@@ -3,7 +3,7 @@ import SignupPage from "./SignupPage"
 
 /**
  * Props:
- *  - None
+ *  - doSignUp f(x)
  *
  * State:
  *  - None
@@ -14,7 +14,7 @@ import SignupPage from "./SignupPage"
  * App -> RoutesList -> Home, UserListings, User Profile, Signup Page
  */
 
-function RoutesList(){
+function RoutesList({doSignUp}){
   return (
     <div className="RoutesList">
       <Routes>

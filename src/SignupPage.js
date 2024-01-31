@@ -17,6 +17,7 @@ function SignupPage({doSignUp}){
 
   return (
     <div className="SignupPage">
+      <h2> Sign up for a super sweet account. Friend. er.</h2>
       <SignupForm doSignUp={doSignUp}/>
     </div>
   )

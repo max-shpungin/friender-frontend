@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import ErrorMessages from "./ErrorMessages";
 
+import { useNavigate } from "react-router-dom";
+
 /**
  * Props:
  *  - doSignUp(): function to be called in parent
@@ -17,11 +19,15 @@ import ErrorMessages from "./ErrorMessages";
 
 
 function SignupForm({ doSignUp }) {
+
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     hobbies: '',
-    number_stree_name: '',
+    number_street_name: '',
     city: '',
     friend_radius: '',
     photo_url: '',
@@ -38,6 +44,8 @@ function SignupForm({ doSignUp }) {
   }
 
   async function handleSubmit(evt) {
+
+    console.log('SignupForm > handleSubmit formdata', formData);
     evt.preventDefault();
     try {
       await doSignUp(formData);
@@ -89,7 +97,7 @@ function SignupForm({ doSignUp }) {
         name="photo_url"
         onChange={handleChange} />
       <button>Submit</button>
-      {errors
+      {/* {errors
         &&
         <div>
           {errors.map((error) => (
@@ -98,7 +106,7 @@ function SignupForm({ doSignUp }) {
             </div>
           ))}
         </div>
-      }
+      } */}
     </form>
   );
 
