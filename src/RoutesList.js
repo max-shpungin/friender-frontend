@@ -1,3 +1,6 @@
+import { Route, Routes, Navigate } from "react-router-dom";
+import SignupPage from "./SignupPage"
+
 /**
  * Props:
  *  - None
@@ -14,6 +17,9 @@
 function RoutesList(){
   return (
     <div className="RoutesList">
+      <Routes>
+        <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup"/>
+      </Routes>
 
     </div>
   )

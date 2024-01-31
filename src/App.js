@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import RoutesList from './RoutesList';
+import { BrowserRouter } from 'react-router-dom';
 
 /**
  * Props:
@@ -18,7 +19,10 @@ import RoutesList from './RoutesList';
 function App() {
   return (
     <div className="App">
-      <RoutesList/>
+      <BrowserRouter>
+        <RoutesList />
+      </BrowserRouter>
+
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import SignupForm from "./SignupForm";
+
 /**
  * Props:
  *  - None
@@ -11,11 +13,11 @@
  * App -> RoutesList -> Signup Page -> Signup Form
  */
 
-function SignupPage(){
+function SignupPage({doSignUp}){
 
   return (
     <div className="SignupPage">
-
+      <SignupForm doSignUp={doSignUp}/>
     </div>
   )
 }
