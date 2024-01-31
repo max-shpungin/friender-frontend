@@ -56,7 +56,7 @@ function SignupForm({ doSignUp }) {
         number_street_name: '',
         city: '',
         friend_radius: '',
-        photo_url: '',
+        photo: '',
       });
       navigate('/');
     } catch (err) {
@@ -92,9 +92,10 @@ function SignupForm({ doSignUp }) {
       <input value={formData.friend_radius}
         name="friend_radius"
         onChange={handleChange} />
-      <label> Photo URL </label>
-      <input value={formData.photo_url}
-        name="photo_url"
+      <label> Profile Photo </label>
+      <input value={formData.photo}
+        type="file"
+        name="photo"
         onChange={handleChange} />
       <button>Submit</button>
       {/* {errors

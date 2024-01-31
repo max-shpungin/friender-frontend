@@ -14,7 +14,7 @@ class FrienderAPI {
   static async request(endpoint, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
-     // authorization: `Bearer ${JoblyApi.token}`,
+      // authorization: `Bearer ${JoblyApi.token}`,
       'content-type': 'application/json',
     };
 
@@ -58,14 +58,13 @@ class FrienderAPI {
    *  photo_url
    * }
   */
-  static async register(
-    username,
+  static async register({ username,
     password,
     hobbies,
     number_street_name,
     city,
     friend_radius,
-    photo_url) {
+    photo_url }) {
 
     let responseData;
 
