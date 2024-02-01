@@ -1,8 +1,11 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import SignupPage from "./SignupPage"
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
+import SignupPage from "./SignupPage";
 import ProfilePage from "./ProfilePage";
 
 /**
+ *
+ *
+ *
  * Props:
  *  - doSignUp f(x)
  *
@@ -15,16 +18,18 @@ import ProfilePage from "./ProfilePage";
  * App -> RoutesList -> Home, UserListings, User Profile, Signup Page
  */
 
-function RoutesList({doSignUp}){
+function RoutesList({ doSignUp }) {
+
+
   return (
     <div className="RoutesList">
       <Routes>
-        <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup"/>
-        <Route element={<ProfilePage />} path="/test"/>
+        <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup" />
+        <Route element={<ProfilePage />} path="/users/:username" />
       </Routes>
 
     </div>
-  )
+  );
 }
 
 export default RoutesList;

@@ -14,8 +14,8 @@ class FrienderAPI {
   static async request(endpoint, data = {}, method = "GET") {
 
     console.log
-    ('FRONTEND REQUEST API, end %o, data %o, method %o',
-    endpoint,data,method);
+      ('FRONTEND REQUEST API, end %o, data %o, method %o',
+        endpoint, data, method);
 
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
@@ -50,6 +50,13 @@ class FrienderAPI {
     const usersData = await this.request(`users/`);
 
     return usersData;
+  }
+
+  /** make a get request for a single user */
+  static async getUser(username) {
+    const userData = await this.request(`users/${username}`);
+
+    return userData;
   }
 
 
