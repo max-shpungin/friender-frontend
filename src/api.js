@@ -47,6 +47,7 @@ class FrienderAPI {
     return usersData;
   }
 
+
   /**Register a user
    * user must include
    * {
