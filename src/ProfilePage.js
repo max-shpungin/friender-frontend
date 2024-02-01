@@ -16,8 +16,15 @@ function ProfilePage() {
 
   //  console.log('submitHandler, file', file);
 
+  const formData = new FormData();
+  let file2;
+  formData.set("file", file);
+
   const resp =
-    await fetch('http://localhost:3001/test', {method: "POST", body:file });
+    await fetch('http://localhost:3001/test', {
+      method: "POST",
+      body:formData
+    });
 
     // const resp = await FrienderAPI.request("test", file, "POST");
     console.log('submitHandler, resp', resp);
