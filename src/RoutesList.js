@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import SignupPage from "./SignupPage"
+import ProfilePage from "./ProfilePage";
 
 /**
  * Props:
@@ -19,6 +20,7 @@ function RoutesList({doSignUp}){
     <div className="RoutesList">
       <Routes>
         <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup"/>
+        <Route element={<ProfilePage />} path="/test"/>
       </Routes>
 
     </div>

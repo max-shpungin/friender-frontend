@@ -30,7 +30,7 @@ function SignupForm({ doSignUp }) {
     number_street_name: '',
     city: '',
     friend_radius: '',
-    photo_url: '',
+    photo: '',
   });
   const [errors, setErrors] = useState([]);
 
