@@ -18,7 +18,7 @@ import UserCard from "./UserCard";
 // from the username we want to query the database with an API method to get
 // the info for the user
 
-const socket = io('http://localhost:3001');
+const socket = io('http://localhost:3002');
 
 function ProfilePage() {
   const { username } = useParams();
@@ -31,9 +31,10 @@ function ProfilePage() {
   const [currentMessage, setCurrentMessage] = useState('');
 
   function handleMessageClick(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     sendMessage();
   }
+
   function sendMessage() {
     if (currentMessage) {
       socket.emit('message', currentMessage);
@@ -123,6 +124,14 @@ function ProfilePage() {
           </div>;
         })}
       </div>
+
+      <input
+        type="text"
+        placeholder="Type a message..."
+        value={currentMessage}
+        onChange={(e) => setCurrentMessage(e.target.value)}
+      />
+      <button onClick={handleMessageClick}>Send</button>
 
     </div>
   );
