@@ -1,6 +1,9 @@
-import FrienderAPI from "./api";
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import io from 'socket.io-client';
+
+import FrienderAPI from "./api";
+import UserCard from "./UserCard";
 
 /**
  * Shows the user, has edit profile button, which brings up
@@ -15,15 +18,50 @@ import { useParams } from "react-router-dom";
 // from the username we want to query the database with an API method to get
 // the info for the user
 
+const socket = io('http://localhost:3001');
+
 function ProfilePage() {
+  const { username } = useParams();
+
   const [userDetails, setUserDetails] = useState(false);
   const [file, setFile] = useState('');
 
-  const { username } = useParams();
+  /** CHAT STUFF HERE */
+  const [messages, setMessages] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  function handleMessageClick(evt) {
+    evt.preventDefault();
+    sendMessage();
+  }
+  function sendMessage() {
+    if (currentMessage) {
+      socket.emit('message', currentMessage);
+      setCurrentMessage('');
+    }
+  }
+
+  useEffect(function getIncomingMessagesAndSet() {
+    socket.on('message', function (message) {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+  }, []);
+
+  /** END CHAT STUFF */
 
   console.log('ProfilePage, username:', username);
   console.log('ProfilePage, userDetails:', userDetails);
 
+
+
+  // <div className="messages">
+  //   {messages.map((message, index)=>{
+  //     <div key={index} className="message">
+  //       return()
+  //       {message}
+  //     </div>
+  //   })}
+  // </div>
 
 
   useEffect(function fetchAndSetUserDetails() {
@@ -72,11 +110,19 @@ function ProfilePage() {
   return (
     <div className="ProfilePage">
       <p>PROFILE PAGE</p>
-      {deets}
+      <UserCard userDetails={userDetails} />
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleChange} />
         <button>kaboom</button>
       </form>
+
+      <div className="messages">
+        {messages.map((message, index) => {
+          <div key={index} className="message">
+            {message}
+          </div>;
+        })}
+      </div>
 
     </div>
   );
