@@ -1,11 +1,9 @@
 import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import SignupPage from "./SignupPage";
 import ProfilePage from "./ProfilePage";
+import UsersListingPage from "./UsersListingPage"
 
 /**
- *
- *
- *
  * Props:
  *  - doSignUp f(x)
  *
@@ -26,6 +24,7 @@ function RoutesList({ doSignUp }) {
       <Routes>
         <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup" />
         <Route element={<ProfilePage />} path="/users/:username" />
+        <Route element={<UsersListingPage />} path="/users" />
       </Routes>
 
     </div>
