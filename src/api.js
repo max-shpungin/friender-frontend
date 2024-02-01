@@ -12,6 +12,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class FrienderAPI {
 
   static async request(endpoint, data = {}, method = "GET") {
+
+    console.log
+    ('FRONTEND REQUEST API, end %o, data %o, method %o',
+    endpoint,data,method);
+
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
       // authorization: `Bearer ${JoblyApi.token}`,

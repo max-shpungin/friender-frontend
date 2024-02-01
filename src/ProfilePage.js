@@ -1,48 +1,37 @@
 import FrienderAPI from "./api";
 import { React, useState } from "react";
 
-function ProfilePage (){
+function ProfilePage() {
 
-  const [ formData, setFormData ] = useState('');
-
-  console.log("formData", formData)
+  const [file, setFile] = useState('');
 
   function handleChange(evt) {
-    console.log("evt.target.files: ", evt.target.files)
-    setFormData(fData => (
-
-      evt.target.files
-
-    //   {
-    //   ...fData,
-    //   [name]: value,
-    // }
-
-    )
-    );
+    setFile(evt.target.files[0]);
   }
 
   // there is a property called evt.target.files
 
-  async function handleSubmit(evt){
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    FrienderAPI.request("test", formData, "POST");
+
+  //  console.log('submitHandler, file', file);
+
+  const resp =
+    await fetch('http://localhost:3001/test', {method: "POST", body:file });
+
+    // const resp = await FrienderAPI.request("test", file, "POST");
+    console.log('submitHandler, resp', resp);
   }
 
 
   return (
     <div className="ProfilePage">
       <form onSubmit={handleSubmit}>
-        <input type="file"
-        value={formData.photo}
-
-        name="photo"
-        onChange={handleChange} />
-
+        <input type="file" onChange={handleChange} />
         <button>kaboom</button>
       </form>
     </div>
-  )
+  );
 }
 
 export default ProfilePage;
