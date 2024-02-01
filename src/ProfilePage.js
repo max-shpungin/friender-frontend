@@ -12,33 +12,36 @@ import { useParams } from "react-router-dom";
 
 
 
-  // from the username we want to query the database with an API method to get
-  // the info for the user
+// from the username we want to query the database with an API method to get
+// the info for the user
 
-async function ProfilePage() {
+function ProfilePage() {
+  const [userDetails, setUserDetails] = useState(false);
+  const [file, setFile] = useState('');
 
-  const [userDetails, setUserDetails] = useState('');
   const { username } = useParams();
 
   console.log('ProfilePage, username:', username);
   console.log('ProfilePage, userDetails:', userDetails);
 
-  debugger;
-
-  useEffect(function fetchAndSetUserDetails(){
-    async function fetchUserDetails(){
 
 
-      const fetchedUserDetails = await FrienderAPI.getUser(username);
-      console.log('ProfilePage, fetchedUserDetails:', fetchedUserDetails);
-
-      setUserDetails(fetchedUserDetails);
+  useEffect(function fetchAndSetUserDetails() {
+    async function fetchUserDetails() {
+      try {
+        const fetchedUserDetails = await FrienderAPI.getUser(username);
+        setUserDetails(fetchedUserDetails);
+        console.log('ProfilePage, fetchedUserDetails:', fetchedUserDetails);
+      } catch (err) {
+        console.error(err);
+      }
     }
-    fetchUserDetails();
+    if (!userDetails) {
+      fetchUserDetails();
+    }
   }, [userDetails]);
 
 
-  const [file, setFile] = useState('');
   function handleChange(evt) {
     setFile(evt.target.files[0]);
   }
@@ -46,38 +49,42 @@ async function ProfilePage() {
   async function handleSubmit(evt) {
     evt.preventDefault();
 
+    const formData = new FormData();
+    formData.set("file", file);
 
-  const formData = new FormData();
-  formData.set("file", file);
-
-  // FIXME:
-  const resp =
-    await fetch('http://localhost:3001/test', {
-      method: "POST",
-      body:formData
-    });
+    // FIXME:
+    const resp =
+      await fetch(`http://localhost:3001/users/${username}`, {
+        method: "PATCH",
+        body: formData
+      });
     console.log('submitHandler, resp', resp);
   }
 
-  // const keys = Object.keys(userDetails);
-  // const deets = keys.map((key)=>{
-  //   return (
-  //     <div>{key}:{userDetails[key]}</div>
-  //   )
-  // })
+  const keys = Object.keys(userDetails);
+  const deets = keys.map((key) => {
+    return (
+      <div key={key}>{key}:{userDetails[key]}</div>
+    );
+  });
 
 
   return (
     <div className="ProfilePage">
-
+      <p>PROFILE PAGE</p>
+      {deets}
+      <form onSubmit={handleSubmit}>
+        <input type="file" onChange={handleChange} />
+        <button>kaboom</button>
+      </form>
 
     </div>
   );
+
 }
 
-{/* <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleChange} />
-        <button>kaboom</button>
-      </form> */}
+
+
+
 
 export default ProfilePage;

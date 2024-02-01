@@ -54,7 +54,6 @@ class FrienderAPI {
 
   /** make a get request for a single user */
   static async getUser(username) {
-    debugger;
     console.log('FrienderApi, getUser username', username);
     const userData = await this.request(`users/${username}`);
 
