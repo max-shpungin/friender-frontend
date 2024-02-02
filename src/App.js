@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import {useState, React} from "react"
+import {useState, React, useEffect} from "react"
 
 import './App.css';
 import RoutesList from './RoutesList';
@@ -20,7 +20,9 @@ import NavBar from './NavBar';
  */
 
 function App() {
-  const [currUser, setCurrUser] = useState({})
+  const [currUser, setCurrUser] = useState(false)
+
+  console.log("APP currUser", currUser);
 
   async function doSignUp(signUpData) {
     await FrienderAPI.register(signUpData);
@@ -32,11 +34,21 @@ function App() {
   async function login(loginData) {
     const user = await FrienderAPI.login(loginData);
 
-    localStorage.setItem("user", user.username);
+    //API response currently coming back as {user: {username:...}}
+    localStorage.setItem("user", user.user.username);
 
-    setCurrUser(() => ({ isLoading: true }));
-
+    //setCurrUser((currUser) => (user.user));
   }
+
+  useEffect(function getAndSetUserFromStorage(){
+    function getUser(){
+      const user = localStorage.getItem('user');
+      setCurrUser(currUser=>({user:user}));
+    }
+    if(!currUser){
+      getUser();
+    }
+  },[currUser]);
 
 
 
@@ -44,7 +56,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <RoutesList doSignUp={doSignUp} login={login} />
+        <RoutesList doSignUp={doSignUp} login={login} user={currUser} />
       </BrowserRouter>
     </div>
   );

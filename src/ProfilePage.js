@@ -27,48 +27,48 @@ function ProfilePage() {
   const [file, setFile] = useState('');
 
   /** CHAT STUFF HERE */
-  const [messages, setMessages] = useState([]); //recieving
-  const [currentMessage, setCurrentMessage] = useState(''); //sending
+  // const [messages, setMessages] = useState([]); //recieving
+  // const [currentMessage, setCurrentMessage] = useState(''); //sending
 
-  useEffect(function getAllMessagesOnInitialMount() {
-    async function fetchAllMessages() {
-      try {
-        const fetchedMessages = await FrienderAPI.getAllMessages()
-        console.log("fetchedMessages", fetchedMessages )
-        setMessages((prevMessages) => [...prevMessages, ...fetchedMessages]);
-      } catch (err) {
-        console.err(err);
-      }
-    }
-    fetchAllMessages();
+  // useEffect(function getAllMessagesOnInitialMount() {
+  //   async function fetchAllMessages() {
+  //     try {
+  //       const fetchedMessages = await FrienderAPI.getAllMessages()
+  //       console.log("fetchedMessages", fetchedMessages )
+  //       setMessages((prevMessages) => [...prevMessages, ...fetchedMessages]);
+  //     } catch (err) {
+  //       console.err(err);
+  //     }
+  //   }
+  //   fetchAllMessages();
 
-  }, []);
+  // }, []);
 
-  function handleMessageClick(evt) {
-    // evt.preventDefault();
+  // function handleMessageClick(evt) {
+  //   // evt.preventDefault();
 
-    console.log("PROFILE Page > handleMessageClick");
-    sendMessage();
-  }
+  //   console.log("PROFILE Page > handleMessageClick");
+  //   sendMessage();
+  // }
 
-  /** SENDING */
-  function sendMessage() {
-    if (currentMessage) {
-      console.log("PROFILE Page > sendMessage currMessage:", currentMessage);
-      socket.emit('message', `${username}: ${currentMessage}`);
-      setCurrentMessage('');
-    }
-  }
+  // /** SENDING */
+  // function sendMessage() {
+  //   if (currentMessage) {
+  //     console.log("PROFILE Page > sendMessage currMessage:", currentMessage);
+  //     socket.emit('message', `${username}: ${currentMessage}`);
+  //     setCurrentMessage('');
+  //   }
+  // }
 
-  /** RECIEVING */
-  useEffect(function getIncomingMessagesAndSet() {
-    socket.on('message', function (message) {
-      setMessages((prevMessages) => [...prevMessages, message]);
-      console.log("PROFILE Page > useEffect, messages:", messages);
-    });
-  }, []);
+  // /** RECIEVING */
+  // useEffect(function getIncomingMessagesAndSet() {
+  //   socket.on('message', function (message) {
+  //     setMessages((prevMessages) => [...prevMessages, message]);
+  //     console.log("PROFILE Page > useEffect, messages:", messages);
+  //   });
+  // }, []);
 
-  /** END CHAT STUFF */
+  // /** END CHAT STUFF */
   // console.log('ProfilePage, username:', username);
   // console.log('ProfilePage, userDetails:', userDetails);
 
@@ -136,7 +136,14 @@ function ProfilePage() {
         <button>kaboom</button>
       </form>
 
-      <div className="messages">
+
+
+    </div>
+  );
+
+}
+
+{/* <div className="messages">
         {messages.map((message, index) => {
           return(
           <div key={index} className="message">
@@ -151,12 +158,7 @@ function ProfilePage() {
         value={currentMessage}
         onChange={(e) => setCurrentMessage(e.target.value)}
       />
-      <button onClick={handleMessageClick}>Send</button>
-
-    </div>
-  );
-
-}
+      <button onClick={handleMessageClick}>Send</button> */}
 
 
 

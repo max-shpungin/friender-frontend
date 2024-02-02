@@ -7,7 +7,7 @@ import Chatroom from "./Chatroom";
 
 /**
  * Props:
- *  - doSignUp f(x)
+ *  - doSignUp f(x), login f(x), username (current user: username)
  *
  * State:
  *  - None
@@ -18,7 +18,7 @@ import Chatroom from "./Chatroom";
  * App -> RoutesList -> Home, UserListings, User Profile, Signup Page
  */
 
-function RoutesList({ doSignUp, login }) {
+function RoutesList({ doSignUp, login, user }) {
 
 
   return (
@@ -28,7 +28,7 @@ function RoutesList({ doSignUp, login }) {
         <Route element={<ProfilePage />} path="/users/:username" />
         <Route element={<UsersListingPage />} path="/users" />
         <Route element={<Home login={login} />} path="/" />
-        <Route element={<Chatroom />} path="/chatroom" />
+        <Route element={<Chatroom user={user} />} path="/chatroom" />
       </Routes>
 
     </div>
