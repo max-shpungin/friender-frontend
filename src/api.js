@@ -43,6 +43,17 @@ class FrienderAPI {
     return await resp.json();
   }
 
+  /* ************************** USERS ********************************** */
+
+
+  /** make a post request to login user
+  */
+    static async login(loginData) {
+      let user = await this.request(`users/login`, loginData, "POST");
+      console.log("login called with response:", res);
+
+      return user;
+    }
 
   /** make get request for all users
    * [{username...}...]

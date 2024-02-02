@@ -2,6 +2,8 @@ import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import SignupPage from "./SignupPage";
 import ProfilePage from "./ProfilePage";
 import UsersListingPage from "./UsersListingPage"
+import Home from "./Home";
+import Chatroom from "./Chatroom";
 
 /**
  * Props:
@@ -22,9 +24,11 @@ function RoutesList({ doSignUp }) {
   return (
     <div className="RoutesList">
       <Routes>
-        <Route element={<SignupPage doSignUp={doSignUp} />} path="/signup" />
+        <Route element={<SignupPage doSignUp={doSignUp} login={login}/>} path="/signup" />
         <Route element={<ProfilePage />} path="/users/:username" />
         <Route element={<UsersListingPage />} path="/users" />
+        <Route element={<Home login={login} />} path="/" />
+        <Route element={<Chatroom />} path="/chatroom" />
       </Routes>
 
     </div>

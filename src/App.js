@@ -21,15 +21,29 @@ import NavBar from './NavBar';
 
 function App() {
 
-  async function doSignUp(signUpData){
+  async function doSignUp(signUpData) {
     await FrienderAPI.register(signUpData);
   }
+
+  /** Logs user in with credentials. Upon successful login,
+  *  getUserDetails called to change currUser state
+  */
+  async function login(loginData) {
+    const user = await FrienderAPI.login(loginData);
+
+    localStorage.setItem("user", user.username);
+
+    setCurrUser(() => ({ isLoading: true }));
+
+  }
+
+
 
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar/>
-        <RoutesList doSignUp={doSignUp} />
+        <NavBar />
+        <RoutesList doSignUp={doSignUp} login={login} />
       </BrowserRouter>
     </div>
   );
