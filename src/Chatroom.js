@@ -90,7 +90,8 @@ function Chatroom({ user }) {
       <h1>Welcome to AOL</h1>
       {console.log("users in the return userslisting page:", users)}
 
-      <div className="Chatroom-UsersList chatroom">
+      <div className="Chatroom-UsersList users-box">
+        <div className="chatroom-users-title">Who is in the party?</div>
         <ul>
           {users.map(user => {
             return (
@@ -99,9 +100,10 @@ function Chatroom({ user }) {
           }
           )}
         </ul>
+
       </div>
 
-      <div className="Chatroom-chat container col-lg-6 chat-history">
+      <div className="Chatroom-chat container col-lg-6 chat-history chatbox">
         <div className="messages">
           {messages.map((message, index) => {
             return (

@@ -61,8 +61,31 @@ li{
   font-weight: bold;
 }
 
-.chatroom{
-  border: 10px;
+.chatroom-users-title{
+  display: flex;
+  justify-content: left;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+
+}
+
+.chatbox{
+  border: 2px;
+  border-radius: 10px;
+  align-items: left;
+  width: 20%;
+  outline: 30px;
+  border-style: solid;
+  padding: 20px;
+  float: center;
+}
+
+.users-box{
+  width: 200px;
+  float: left;
+  height: 300px;
+  background-color:
 
 }
 
