@@ -54,7 +54,7 @@ function Home({ login }) {
           <h1 className="h3 mb-3 fw-normal"> Sign in to chat!</h1>
 
           <div className="form-floating m-2">
-            <label for="floating-input">Username</label>
+
             <input
               id="floating-input"
               className="form-control"
@@ -63,7 +63,7 @@ function Home({ login }) {
               onChange={handleChange} />
           </div>
           <div className="form-floating m-2">
-            <label for="floating-input">Password </label>
+
             <input
               id="floating-input"
               className="form-control"
