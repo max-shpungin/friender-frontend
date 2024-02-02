@@ -18,7 +18,9 @@ import UserCard from "./UserCard";
 // from the username we want to query the database with an API method to get
 // the info for the user
 
-const socket = io('http://localhost:3002');
+//const socket = io('http://localhost:3002');
+
+const socket = io('https://mes-friender.onrender.com' , {transports: ['websocket']});
 
 function ProfilePage() {
   const { username } = useParams();

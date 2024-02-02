@@ -1,6 +1,8 @@
 import { useState, React, useEffect } from "react";
 import io from 'socket.io-client';
 import FrienderAPI from './api';
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
 // import "./Chatroom.css"
 
 /**
@@ -18,7 +20,10 @@ import FrienderAPI from './api';
 
 //FIXME: right now {user} is being passed down but actually we are reading from localStorage, pick one or the other
 
-const socket = io('http://localhost:3002'); //FIXME: HARD CODED!
+// const socket = io('http://localhost:3002'); //FIXME: HARD CODED!
+
+const socket =
+  io(BASE_URL , {transports: ['websocket']});
 
 function Chatroom({ user }) {
 
