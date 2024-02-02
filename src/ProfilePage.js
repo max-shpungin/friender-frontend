@@ -27,31 +27,38 @@ function ProfilePage() {
   const [file, setFile] = useState('');
 
   /** CHAT STUFF HERE */
-  const [messages, setMessages] = useState([]);
-  const [currentMessage, setCurrentMessage] = useState('');
+  const [messages, setMessages] = useState([]); //recieving
+
+  const [currentMessage, setCurrentMessage] = useState(''); //sending
 
   function handleMessageClick(evt) {
     // evt.preventDefault();
+
+    console.log("PROFILE Page > handleMessageClick");
     sendMessage();
   }
 
+  /** SENDING */
   function sendMessage() {
     if (currentMessage) {
+      console.log("PROFILE Page > sendMessage currMessage:", currentMessage);
       socket.emit('message', currentMessage);
       setCurrentMessage('');
     }
   }
 
+  /** RECIEVING */
   useEffect(function getIncomingMessagesAndSet() {
     socket.on('message', function (message) {
       setMessages((prevMessages) => [...prevMessages, message]);
+      console.log("PROFILE Page > useEffect, messages:", messages);
     });
   }, []);
 
   /** END CHAT STUFF */
 
-  console.log('ProfilePage, username:', username);
-  console.log('ProfilePage, userDetails:', userDetails);
+  // console.log('ProfilePage, username:', username);
+  // console.log('ProfilePage, userDetails:', userDetails);
 
 
 
@@ -119,9 +126,10 @@ function ProfilePage() {
 
       <div className="messages">
         {messages.map((message, index) => {
+          return(
           <div key={index} className="message">
             {message}
-          </div>;
+          </div>);
         })}
       </div>
 
