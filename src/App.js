@@ -1,8 +1,10 @@
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+
+
 import './App.css';
 import RoutesList from './RoutesList';
-import { BrowserRouter } from 'react-router-dom';
 import FrienderAPI from './api';
+import NavBar from './NavBar';
 
 /**
  * Props:
@@ -26,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar/>
         <RoutesList doSignUp={doSignUp} />
       </BrowserRouter>
     </div>

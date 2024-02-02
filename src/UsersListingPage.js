@@ -35,9 +35,7 @@ function UsersListingPage() {
 
 
       {users.map(u => (
-        <UserCard userDetails={u} />))}
-
- 
+        <UserCard userDetails={u} key={u.username} />))}
 
       These are all the folks you can chat with
     </div>

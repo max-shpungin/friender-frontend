@@ -94,9 +94,9 @@ function ProfilePage() {
         console.error(err);
       }
     }
-    // if (!userDetails) {
-    //   fetchUserDetails();
-    // }
+    if (!userDetails) {
+      fetchUserDetails();
+    }
   }, [userDetails]);
 
 
@@ -105,7 +105,7 @@ function ProfilePage() {
   }
 
   async function handleSubmit(evt) {
-    evt.preventDefault();
+    //evt.preventDefault();
 
     const formData = new FormData();
     formData.set("file", file);
