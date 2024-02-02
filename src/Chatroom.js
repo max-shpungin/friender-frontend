@@ -1,6 +1,8 @@
 import { useState, React, useEffect } from "react";
 import io from 'socket.io-client';
 import FrienderAPI from './api';
+// import "./Chatroom.css"
+
 /**
  * Props:
  *  - usernaname (current user)
@@ -88,18 +90,18 @@ function Chatroom({ user }) {
       <h1>Welcome to AOL</h1>
       {console.log("users in the return userslisting page:", users)}
 
-      <div className="Chatroom-UsersList">
+      <div className="Chatroom-UsersList chatroom">
         <ul>
           {users.map(user => {
             return (
-              <li key={user.username}>{user.username}</li>
+              <li className="chat-user" key={user.username}>{user.username}</li>
             );
           }
           )}
         </ul>
       </div>
 
-      <div className="Chatroom-chat">
+      <div className="Chatroom-chat container col-lg-6 chat-history">
         <div className="messages">
           {messages.map((message, index) => {
             return (
@@ -115,7 +117,7 @@ function Chatroom({ user }) {
           value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
-        <button onClick={handleMessageClick}>Send</button>
+        <button className="btn btn-primary" onClick={handleMessageClick}>Send</button>
       </div>
     </div>
   );
