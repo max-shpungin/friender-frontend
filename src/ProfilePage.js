@@ -28,8 +28,21 @@ function ProfilePage() {
 
   /** CHAT STUFF HERE */
   const [messages, setMessages] = useState([]); //recieving
-
   const [currentMessage, setCurrentMessage] = useState(''); //sending
+
+  useEffect(function getAllMessagesOnInitialMount() {
+    async function fetchAllMessages() {
+      try {
+        const fetchedMessages = await FrienderAPI.getAllMessages()
+        console.log("fetchedMessages", fetchedMessages )
+        setMessages((prevMessages) => [...prevMessages, ...fetchedMessages]);
+      } catch (err) {
+        console.err(err);
+      }
+    }
+    fetchAllMessages();
+
+  }, []);
 
   function handleMessageClick(evt) {
     // evt.preventDefault();
@@ -42,7 +55,7 @@ function ProfilePage() {
   function sendMessage() {
     if (currentMessage) {
       console.log("PROFILE Page > sendMessage currMessage:", currentMessage);
-      socket.emit('message', currentMessage);
+      socket.emit('message', `${username}: ${currentMessage}`);
       setCurrentMessage('');
     }
   }
@@ -56,7 +69,6 @@ function ProfilePage() {
   }, []);
 
   /** END CHAT STUFF */
-
   // console.log('ProfilePage, username:', username);
   // console.log('ProfilePage, userDetails:', userDetails);
 
@@ -82,9 +94,9 @@ function ProfilePage() {
         console.error(err);
       }
     }
-    if (!userDetails) {
-      fetchUserDetails();
-    }
+    // if (!userDetails) {
+    //   fetchUserDetails();
+    // }
   }, [userDetails]);
 
 

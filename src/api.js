@@ -43,6 +43,7 @@ class FrienderAPI {
     return await resp.json();
   }
 
+
   /** make get request for all users
    * [{username...}...]
   */
@@ -103,6 +104,19 @@ class FrienderAPI {
     return responseData;
   }
 
+  /* ************************** MESSAGES ********************************** */
+
+
+  /** make get request for all users
+   * [{username...}...]
+  */
+  static async getAllMessages() {
+    const messages = await this.request(`messages/`);
+
+    //FIXME: write a route in the back-end to messages
+
+    return messages;
+  }
 
 }
 
