@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-
+import {useState, React} from "react"
 
 import './App.css';
 import RoutesList from './RoutesList';
@@ -20,6 +20,7 @@ import NavBar from './NavBar';
  */
 
 function App() {
+  const [currUser, setCurrUser] = useState({})
 
   async function doSignUp(signUpData) {
     await FrienderAPI.register(signUpData);

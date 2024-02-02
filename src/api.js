@@ -50,7 +50,7 @@ class FrienderAPI {
   */
     static async login(loginData) {
       let user = await this.request(`users/login`, loginData, "POST");
-      console.log("login called with response:", res);
+      console.log("login called with response:", user);
 
       return user;
     }
