@@ -1,6 +1,27 @@
-## Available Scripts
+## A Chatroom Built with Websockets
 
-In the project directory, you can run:
+The main purpose of this project was to experiment with websockets while integrating several different pieces of tech:
+
+- ReactJS on the frontend
+- Express on the backend
+- PostgresQL to store user data
+- AWS S3 to store images
+
+## Requirements Capture:
+
+Google docs was used to capture and prioritize requirements for the project.
+
+![friender-reqs](https://github.com/max-shpungin/friender-frontend/assets/69606359/12738f01-2070-419c-b2b4-8aee8eb5cf87)
+
+You can view the full requirements document here: [link](https://docs.google.com/document/d/1yZD8LEQhG01E4rpb2G_iPsKqBQLvScW1LHjMIWAzAWQ/edit?usp=sharing)
+
+Miro was used to create diagrams to outline the API design as well as frontend component architecture:
+
+![friender-frontend](https://github.com/max-shpungin/friender-frontend/assets/69606359/e4418f37-106e-4304-b0e5-974b1746d2f1)
+![friender-backend](https://github.com/max-shpungin/friender-frontend/assets/69606359/982b9439-9ebc-47f7-97d1-5fa73d95c3d4)
+![friender-db-api](https://github.com/max-shpungin/friender-frontend/assets/69606359/a1d7add1-99c3-44db-b3d4-d046706865f0)
+
+Note that this is just the frontend code - the backend is in a separate github repository that you can find [here](https://github.com/max-shpungin/friender-backend).
 
 ### `npm start`
 
@@ -24,13 +45,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
